@@ -23,7 +23,7 @@ set -euo pipefail                           # Treat unset variables as an error
 
 ### set variables
 # destinations you don't want routed through Tor
-_non_tor="192.168.1.0/24 192.168.0.0/24"
+_non_tor="192.168.1.0/24 192.168.0.0/24 192.168.50.0/24 10.0.0.0/24 172.16.0.0/24"
 
 ### get the container tor runs in
 _tor_container="$(docker ps | awk '/torproxy/ {print $NF; quit}')"
@@ -64,4 +64,3 @@ iptables -t nat -A OUTPUT -p tcp --syn -j REDIRECT --to-ports $_trans_port
 
 ### allow only tor output
 iptables -A OUTPUT -m owner --uid-owner $_tor_uid -j ACCEPT
-iptables -A OUTPUT -j REJECT
