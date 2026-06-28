@@ -23,7 +23,7 @@ set -euo pipefail                           # Treat unset variables as an error
 
 ### set variables
 # destinations you don't want routed through Tor
-_non_tor="192.168.1.0/24 192.168.0.0/24"
+_non_tor="192.168.1.0/24 192.168.0.0/24 192.168.50.0/24 10.0.0.0/24 10.0.0.0/24"
 
 ### get the container tor runs in
 _tor_container="$(docker ps | awk '/torproxy/ {print $NF; quit}')"
